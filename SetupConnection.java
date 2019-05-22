@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class SetupConnection{
     private Connection con;
@@ -11,7 +12,12 @@ public class SetupConnection{
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Driver Setup Successful.");
 
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OLCustomers?serverTimezone=UTC", "root", "1997");
+            Scanner scan  = new Scanner(System.in);
+
+            System.out.println("Please Enter your mySQL password to connect to database: ");
+            String pass = scan.nextLine();
+
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/OLCustomers?serverTimezone=UTC", "root", pass);
             System.out.println("Database Connection Successful.");
             connected = true;
 
