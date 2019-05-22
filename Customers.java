@@ -5,6 +5,7 @@ public class Customers implements Operations{
     SetupConnection connection = new SetupConnection();
     Scanner scan = new Scanner(System.in);
 
+
 	public void insert(User user){
         //Inserts the created user into mySQL database
 
@@ -37,6 +38,13 @@ public class Customers implements Operations{
 	}
 
 	public void delete(int ssn){
+
+        SetupConnection connection = new SetupConnection();
+        String query = "DELETE from Users where ssn = '"+ssn+"' ";
+        connection.writeQuery(query);
+
+
+
         //Deletes an existing user in the mySQL database
         
         //Log every deletion
