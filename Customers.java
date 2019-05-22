@@ -10,7 +10,7 @@ public class Customers implements Operations{
         scan = new Scanner(System.in);
     }
 
-	public void insert(User user){
+	public void insert(){
         //Inserts the created user into mySQL database
         
         Scanner myObj = new Scanner(System.in);
@@ -18,35 +18,23 @@ public class Customers implements Operations{
 
         System.out.println("Enter firstName");
         String firstName=myObj.nextLine();
-        user.getFirst(firstName);
-        
 
         System.out.println("Enter lastName");
         String lastName=myObj.nextLine();
-        user.getLast(lastName);
 
         System.out.println("Enter Email id");
         String email=myObj.nextLine();
-        user.getEmail(email);
 
         System.out.println("Enter age");
-        String age=myObj.nextInt();
-        myObj.nextLine();
-        user.getAge(age);
+        int age=myObj.nextInt();
         
 
         System.out.println("Enter ssn");
-        String ssn=myObj.nextLine();
-        user.getSsn(ssn);
-        
+        int ssn=myObj.nextInt();
 
-        //SetupConnection();
-
-       // writeQuery(select * from Users_table);
-       // writeQuery(INSERT INTO `Users_table`(`firstName`,`lastName`,`age`,`ssn`,`email`) VALUES (firstName,lastName,age,ssn,email);)
-        
-
-        //Exceptions from failure to insert must be handled.
+        connection.updateQuery("INSERT INTO `Users` VALUES ('" + firstName + "','" + lastName + 
+                "',"+ age + ","+ ssn + ",'" + email + "')");
+                        
 	}
 
 	public void update(int ssn){
