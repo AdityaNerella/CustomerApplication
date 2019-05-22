@@ -42,6 +42,18 @@ public class SetupConnection{
         return results;
     }
 
+    public void updateQuery(String query){
+        if(connected){
+            try{
+                    st.executeUpdate(query);
+                    System.out.println("Query Update Successful.");
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
+        }
+    }
+
     public void closeConnection(){
         try{
             if(connected){
