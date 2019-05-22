@@ -1,31 +1,40 @@
+import java.util.*;
+import java.io.*;
+
+
 public class Customers implements Operations{
 
 	public void insert(User user){
         //Inserts the created user into mySQL database
         
-        User myObj = new User(System.in);
+        Scanner myObj = new Scanner(System.in);
+        //User u=new User();
+
         System.out.println("Enter firstName");
-        String firstName=myObj.getFirst();
-        firstName.nextLine();
+        String firstName=myObj.nextLine();
+        user.getFirst(firstName);
+        
 
         System.out.println("Enter lastName");
-        String lastName=myObj.getLast();
-        lastName.nextLine();
+        String lastName=myObj.nextLine();
+        user.getLast(lastName);
 
         System.out.println("Enter Email id");
-        String email=myObj.getEmail();
-        email.nextLine();
+        String email=myObj.nextLine();
+        user.getEmail(email);
 
         System.out.println("Enter age");
-        String age=myObj.getAge();
-        age.nextInt();
-        age.nextLine();
+        String age=myObj.nextInt();
+        myObj.nextLine();
+        user.getAge(age);
+        
 
         System.out.println("Enter ssn");
-        String ssn=myObj.getSsn();
-        ssn.nextLine();
+        String ssn=myObj.nextLine();
+        user.getSsn(ssn);
+        
 
-        SetupConnection();
+        //SetupConnection();
 
        // writeQuery(select * from Users_table);
        // writeQuery(INSERT INTO `Users_table`(`firstName`,`lastName`,`age`,`ssn`,`email`) VALUES (firstName,lastName,age,ssn,email);)
