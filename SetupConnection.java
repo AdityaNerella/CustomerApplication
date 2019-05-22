@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.Scanner;
 
-public class SetupConnection{
+public static class SetupConnection{
     private Connection con;
     private Statement st;
     private ResultSet results;
