@@ -8,7 +8,7 @@ public class Customers implements Operations{
         //Exceptions from failure to insert must be handled.
 	}
 
-	public void update(int userID){
+	public void update(int ssn){
         //Updates an existing user in the mySQL database
 
         //Log every update
@@ -16,7 +16,7 @@ public class Customers implements Operations{
         //Exceptions from failure to update must be handled.
 	}
 
-	public void delete(int userID){
+	public void delete(int ssn){
         //Deletes an existing user in the mySQL database
         
         //Log every deletion
