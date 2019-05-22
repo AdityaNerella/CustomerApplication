@@ -2,8 +2,34 @@ public class Customers implements Operations{
 
 	public void insert(User user){
         //Inserts the created user into mySQL database
+        
+        User myObj = new User(System.in);
+        System.out.println("Enter firstName");
+        String firstName=myObj.getFirst();
+        firstName.nextLine();
 
-        //Log every insetion
+        System.out.println("Enter lastName");
+        String lastName=myObj.getLast();
+        lastName.nextLine();
+
+        System.out.println("Enter Email id");
+        String email=myObj.getEmail();
+        email.nextLine();
+
+        System.out.println("Enter age");
+        String age=myObj.getAge();
+        age.nextInt();
+        age.nextLine();
+
+        System.out.println("Enter ssn");
+        String ssn=myObj.getSsn();
+        ssn.nextLine();
+
+        SetupConnection();
+
+       // writeQuery(select * from Users_table);
+       // writeQuery(INSERT INTO `Users_table`(`firstName`,`lastName`,`age`,`ssn`,`email`) VALUES (firstName,lastName,age,ssn,email);)
+        
 
         //Exceptions from failure to insert must be handled.
 	}
