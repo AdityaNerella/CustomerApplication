@@ -36,7 +36,9 @@ public class Main{
                         customer.update();
                         break;
                     case 3:
-                        customer.delete();
+                        System.out.println("Please enter your SSN to delete record");
+                        String ssn = read.nextInt();
+                        customer.delete(ssn);
                         break;
                     case 4: 
                         System.out.println("User Information: ");
