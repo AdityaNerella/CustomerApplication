@@ -18,27 +18,35 @@ public class Customers implements Operations{
         //Exceptions from failure to insert must be handled.
 	}
 
-	public void update(int ssn){
+ 	public void update(int ssn){
         //Updates an existing user in the mySQL database
         ResultSet rs = connection.writeQuery("Select * from Users where ssn = " + ssn);
-        printAll(rs);
-
-        System.out.println("Please enter the first name: ");
-        String fn = scan.nextLine();
-
-        System.out.println("Please enter the last name: ");
-        String ln = scan.nextLine();
-
-        System.out.println("Please enter the age: ");
-        int age = scan.nextInt();
-        scan.nextLine();
-
-        System.out.println("Please enter the email: ");
-        String email = scan.nextLine();
-
-        connection.updateQuery("UPDATE Users SET first_name = '" + fn + "', last_name = '" + ln 
-                    + "', age = '" + age + "', ssn = '" +  ssn + "', email = '" + email + "' WHERE ssn = '" + ssn + "'");
         
+        try{
+            if(rs.next()){
+                printAll(rs);
+
+                System.out.println("Please enter the first name: ");
+                String fn = scan.nextLine();
+
+                System.out.println("Please enter the last name: ");
+                String ln = scan.nextLine();
+
+                System.out.println("Please enter the age: ");
+                int age = scan.nextInt();
+                scan.nextLine();
+
+                System.out.println("Please enter the email: ");
+                String email = scan.nextLine();
+
+                connection.updateQuery("UPDATE Users SET first_name = '" + fn + "', last_name = '" + ln 
+                            + "', age = '" + age + "', ssn = '" +  ssn + "', email = '" + email + "' WHERE ssn = '" + ssn + "'");    
+            }else{
+                System.out.println("No Records Found!");
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
 	}
 
 	public void delete(int ssn){
