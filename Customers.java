@@ -19,17 +19,10 @@ public class Customers implements Operations{
 
 	public void delete(int ssn){
 
-        SetupConnection connection = new SetupConnection();
         String query = "DELETE from Users where ssn = '"+ssn+"' ";
-        connection.writeQuery(query);
+        connection.updateQery(query);
+        System.out.println("User deleted successfully");
 
-
-
-        //Deletes an existing user in the mySQL database
-        
-        //Log every deletion
-        
-        //Exceptions from failure to delete records must be handled.
 	}
 
 	public void printAll(){
