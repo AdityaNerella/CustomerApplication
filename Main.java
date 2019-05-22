@@ -4,7 +4,10 @@ public class Main{
     public static void main(String [] args){
         // Establish Database Connection using JDBC
         
-        SetupConnection connection = new SetupConnection();
+        Customers custom = new Customers();
+        custom.update(23);
+        
+        /* SetupConnection connection = new SetupConnection();
         ResultSet rs = connection.writeQuery("Select * from Users");
         try{
             while(rs.next()){
@@ -14,7 +17,7 @@ public class Main{
         }catch(Exception e){
             System.out.println(e);
         }
-        connection.closeConnection();
+        connection.closeConnection(); */
         // Write Switch statements to allow user to choose the operation to perform
 
     }
