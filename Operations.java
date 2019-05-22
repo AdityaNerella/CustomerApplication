@@ -1,7 +1,7 @@
 public interface Operations{
 
-	abstract public void insert(User user);
-	abstract public void update(int ssn);
-	abstract public void delete(int ssn);
+	 public void insert(User user);
+	 public void update(int ssn);
+	 public void delete(int ssn);
 
 }
