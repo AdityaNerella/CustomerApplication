@@ -1,46 +1,37 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class Main{
     public static void main(String [] args){
         // Establish Database Connection using JDBC
         
-        Customers custom = new Customers();
-        custom.update(23);
-        
-        /* SetupConnection connection = new SetupConnection();
-        ResultSet rs = connection.writeQuery("Select * from Users");
-        try{
-            while(rs.next()){
-				System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " +rs.getString(3) 
-					+ " " + rs.getInt(4)  + " " + rs.getInt(5)  + " " + rs.getString(6) );
-            }
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        connection.closeConnection(); */
-        // Write Switch statements to allow user to choose the operation to perform
-
         Customers customer = new Customers();
 
+        int ssn;
         boolean isExit = true;          
+        Scanner read = new Scanner(System.in);
         while(isExit){
 
-            System.out.println("Please enter your choice: \n 1) CREATE USER\n 2)UPDATE USER\n 3)DELETE USER\n4)SHOW USER\n5)EXIT");
-            Scanner read = new Scanner(System.in);
+            System.out.println("Please enter your choice: \n 1)CREATE USER\n 2)UPDATE USER\n 3)DELETE USER\n4)SHOW USER\n5)EXIT");
             int choice = read.nextInt();
+            read.nextLine();
 
                 switch (choice) {
                     // Create User
                     case 1: 
-                        customer.insert();  
+                        //customer.insert();  
                         break;
                     // Update User
                     case 2:
-                        customer.update();
+                        System.out.println("Please enter the SSN to update record");
+                        ssn = read.nextInt();
+                        read.nextLine();
+                        customer.update(ssn);
                         break;
                     case 3:
-                        System.out.println("Please enter your SSN to delete record");
-                        String ssn = read.nextInt();
+                        System.out.println("Please enter the SSN to delete record");
+                        ssn = read.nextInt();
+                        read.nextLine();
                         customer.delete(ssn);
                         break;
                     case 4: 
