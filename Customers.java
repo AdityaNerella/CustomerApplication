@@ -1,7 +1,9 @@
 import java.sql.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class Customers implements Operations{
+    ArrayList <User> customers = new ArrayList<User> ();
+
     SetupConnection connection;
     Scanner scan;
 
@@ -10,12 +12,29 @@ public class Customers implements Operations{
         scan = new Scanner(System.in);
     }
 
-	public void insert(User user){
+	public void insert(){
+        Scanner myObj = new Scanner(System.in);
+
+        System.out.println("Enter firstName");
+        String firstName=myObj.nextLine();
+
+        System.out.println("Enter lastName");
+        String lastName=myObj.nextLine();
+
+        System.out.println("Enter Email id");
+        String email=myObj.nextLine();
+
+        System.out.println("Enter age");
+        int age=myObj.nextInt();
+        
+
+        System.out.println("Enter ssn");
+        int ssn=myObj.nextInt();
+
         //Inserts the created user into mySQL database
-
-        //Log every insetion
-
-        //Exceptions from failure to insert must be handled.
+        connection.updateQuery("INSERT INTO `Users` VALUES ('" + firstName + "','" + lastName + 
+                "',"+ age + ","+ ssn + ",'" + email + "')");
+                        
 	}
 
 	public void update(int ssn){
@@ -84,4 +103,22 @@ public class Customers implements Operations{
             System.out.println(e);
         }
 	}
+
+    public void updateCustomers(){
+        //Get ResultSet from DB
+        try{
+            ResultSet rs = connection.writeQuery("Select * from Users");
+            customers.clear();
+            while(rs.next()){
+                 //Construct User from the ResultSet
+				User u = new User(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5) );
+                
+                //Update Customers Array after each iteration. 
+                customers.add(u);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+       
+    }
 }

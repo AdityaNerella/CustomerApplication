@@ -19,7 +19,7 @@ public class Main{
                 switch (choice) {
                     // Create User
                     case 1: 
-                        //customer.insert();  
+                        customer.insert();  
                         break;
                     // Update User
                     case 2:
