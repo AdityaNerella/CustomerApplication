@@ -5,6 +5,8 @@ public class Customers implements Operations{
     SetupConnection connection;
     Scanner scan;
 
+    ArrayList<User> customers = new ArrayList<User>();
+
     Customers(){
         connection = new SetupConnection();
         scan = new Scanner(System.in);
@@ -34,6 +36,8 @@ public class Customers implements Operations{
 
         connection.updateQuery("INSERT INTO `Users` VALUES ('" + firstName + "','" + lastName + 
                 "',"+ age + ","+ ssn + ",'" + email + "')");
+
+        updateCustomers();
                         
 	}
 
@@ -57,13 +61,17 @@ public class Customers implements Operations{
 
         connection.updateQuery("UPDATE Users SET first_name = '" + fn + "', last_name = '" + ln 
                     + "', age = '" + age + "', ssn = '" +  ssn + "', email = '" + email + "' WHERE ssn = '" + ssn + "'");
+
+        updateCustomers();
         
 	}
 
 	public void delete(int ssn){
         String query = "DELETE from Users where ssn = '"+ssn+"' ";
         connection.updateQuery(query);
+        updateCustomers();
 	}
+
 
 	public void printAll(ResultSet rs){
         //Prints all the users in the mySQL database
@@ -82,13 +90,19 @@ public class Customers implements Operations{
     public void printAll(){
         //Prints all the users in the mySQL database
         try{
-            ResultSet rs = connection.writeQuery("Select * from Users");
-            while(rs.next()){
-                System.out.println("-------------------------------------------------------------------");
-				System.out.println(rs.getString(1) + " " +rs.getString(2) 
-					+ " " + rs.getInt(3)  + " " + rs.getInt(4)  + " " + rs.getString(5) );
+           updateCustomers();
+
+           if(customers.size() >= 1){
+                for(int i=0; i<customers.size(); i++){
+                    System.out.println("-------------------------------------------------------------------");
+                    System.out.println("Customers: "+"\n" + customers.get(i).toString());
+                }    
                 System.out.println("-------------------------------------------------------------------");
             }
+            else{
+                System.out.println("NO USERS AVAILABLE");
+            }
+        }
         }catch(Exception e){
             System.out.println(e);
         }
