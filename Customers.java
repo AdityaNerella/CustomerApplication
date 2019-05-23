@@ -37,7 +37,7 @@ public class Customers implements Operations{
         connection.updateQuery("INSERT INTO `Users` VALUES ('" + firstName + "','" + lastName + 
                 "',"+ age + ","+ ssn + ",'" + email + "')");
 
-        updateCustomers();
+        
                         
 	}
 
@@ -62,14 +62,14 @@ public class Customers implements Operations{
         connection.updateQuery("UPDATE Users SET first_name = '" + fn + "', last_name = '" + ln 
                     + "', age = '" + age + "', ssn = '" +  ssn + "', email = '" + email + "' WHERE ssn = '" + ssn + "'");
 
-        updateCustomers();
+        
         
 	}
 
 	public void delete(int ssn){
         String query = "DELETE from Users where ssn = '"+ssn+"' ";
         connection.updateQuery(query);
-        updateCustomers();
+        
 	}
 
 
@@ -102,7 +102,7 @@ public class Customers implements Operations{
             else{
                 System.out.println("NO USERS AVAILABLE");
             }
-        }
+        
         }catch(Exception e){
             System.out.println(e);
         }
