@@ -2,7 +2,7 @@ public class User{
 	private String first_name, last_name, email;
 	private int age, ssn;
 	
-	User(String first, String last, String email, int age, int ssn){
+	User(String first, String last, int age, int ssn, String email){
 		this.first_name = first;
 		this.last_name = last;
 		this.email = email;
