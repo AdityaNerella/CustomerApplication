@@ -7,37 +7,31 @@ public class Customers implements Operations{
     SetupConnection connection;
     Scanner scan;
 
-    ArrayList<User> customers = new ArrayList<User>();
-
     Customers(){
         connection = new SetupConnection();
         scan = new Scanner(System.in);
     }
 
 	public void insert(){
-        Scanner myObj = new Scanner(System.in);
 
         System.out.println("Enter firstName");
-        String firstName=myObj.nextLine();
+        String firstName=scan.nextLine();
 
         System.out.println("Enter lastName");
-        String lastName=myObj.nextLine();
+        String lastName=scan.nextLine();
 
         System.out.println("Enter Email id");
-        String email=myObj.nextLine();
+        String email=scan.nextLine();
 
         System.out.println("Enter age");
-        int age=myObj.nextInt();
+        int age=scan.nextInt();
         
-
         System.out.println("Enter ssn");
-        int ssn=myObj.nextInt();
+        int ssn=scan.nextInt();
 
         //Inserts the created user into mySQL database
         connection.updateQuery("INSERT INTO `Users` VALUES ('" + firstName + "','" + lastName + 
                 "',"+ age + ","+ ssn + ",'" + email + "')");
-
-        
                         
 	}
 
@@ -60,10 +54,7 @@ public class Customers implements Operations{
         String email = scan.nextLine();
 
         connection.updateQuery("UPDATE Users SET first_name = '" + fn + "', last_name = '" + ln 
-                    + "', age = '" + age + "', ssn = '" +  ssn + "', email = '" + email + "' WHERE ssn = '" + ssn + "'");
-
-        
-        
+                    + "', age = '" + age + "', ssn = '" +  ssn + "', email = '" + email + "' WHERE ssn = '" + ssn + "'");       
 	}
 
 	public void delete(int ssn){
@@ -71,7 +62,6 @@ public class Customers implements Operations{
         connection.updateQuery(query);
         
 	}
-
 
 	public void printAll(ResultSet rs){
         //Prints all the users in the mySQL database
