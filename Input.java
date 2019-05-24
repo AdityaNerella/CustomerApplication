@@ -2,9 +2,21 @@ import java.io.*;
 import java.util.*;
 
 class Input{
-    static Scanner scan =new Scanner(System.in);
+    public static Input input; 
+    Scanner scan;
+    
+    public static Input getInput(){
+        if(input == null){
+            input = new Input();
+        }
+        return input;
+    }
 
-    static int getScanInteger(){
+    private Input(){
+        scan = new Scanner(System.in);
+    }
+
+    int getScanInteger(){
         int var = scan.nextInt();
         if(scan.hasNextLine()==true){
             scan.nextLine();
@@ -12,11 +24,11 @@ class Input{
         return var;
     }
 
-    static String getScanString(){
+    String getScanString(){
         return scan.nextLine();
     }
 
-    static boolean getScanBoolean(){
+    boolean getScanBoolean(){
         return scan.nextBoolean();
     }
 

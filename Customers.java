@@ -6,10 +6,12 @@ public class Customers implements Operations{
 
     SetupConnection connection;
     Scanner scan;
+    Input input;
 
     Customers(){
         connection = new SetupConnection();
         scan = new Scanner(System.in);
+        input = Input.getInput();
     }
 
 	public void insert(){
@@ -17,19 +19,19 @@ public class Customers implements Operations{
         //Inserts the created user into mySQL database
 
         System.out.println("Enter firstName");
-        String firstName=Input.getScanString();
+        String firstName=input.getScanString();
 
         System.out.println("Enter lastName");
-        String lastName=Input.getScanString();
+        String lastName=input.getScanString();
 
         System.out.println("Enter Email id");
-        String email=Input.getScanString();
+        String email=input.getScanString();
 
         System.out.println("Enter age");
-        int age=Input.getScanInteger();
+        int age=input.getScanInteger();
         
         System.out.println("Enter ssn");
-        int ssn=Input.getScanInteger();
+        int ssn=input.getScanInteger();
 
 
         //Inserts the created user into mySQL database
@@ -44,17 +46,17 @@ public class Customers implements Operations{
         printAll(rs);
 
         System.out.println("Please enter the first name: ");
-        String fn = Input.getScanString();
+        String fn = input.getScanString();
 
         System.out.println("Please enter the last name: ");
-        String ln = Input.getScanString();
+        String ln = input.getScanString();
 
         System.out.println("Please enter the age: ");
-        int age = Input.getScanInteger();
+        int age = input.getScanInteger();
 
 
         System.out.println("Please enter the email: ");
-        String email = Input.getScanString();
+        String email = input.getScanString();
 
         connection.updateQuery("UPDATE Users SET first_name = '" + fn + "', last_name = '" + ln 
                     + "', age = '" + age + "', ssn = '" +  ssn + "', email = '" + email + "' WHERE ssn = '" + ssn + "'");       
