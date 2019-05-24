@@ -7,7 +7,9 @@ public class SetupConnection{
     private ResultSet results;
     private Boolean connected = false;
 
-    SetupConnection(){
+    private static SetupConnection setconn;
+
+    private SetupConnection(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Driver Setup Successful.");
@@ -29,7 +31,25 @@ public class SetupConnection{
         }
     }
 
-    public ResultSet writeQuery(String query){
+    public static SetupConnection getInstance(){
+        if(setconn==null){
+            setconn=new SetupConnection();
+        }
+        return setconn;
+    }
+
+    public void getSomething(){
+        System.out.println("Database connected with singleton pattern");
+    }
+
+    public static void main(String[] args) {
+        SetupConnection st=SetupConnection.getInstance();
+        st.getSomething();
+    }
+
+}
+
+   /* public ResultSet writeQuery(String query){
         if(connected){
             try{
                     results = st.executeQuery(query);
@@ -71,3 +91,4 @@ public class SetupConnection{
     }
 
 }
+*/
