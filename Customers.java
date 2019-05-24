@@ -58,10 +58,19 @@ public class Customers implements Operations{
 	}
 
 	public void delete(int ssn){
-        String query = "DELETE from Users where ssn = '"+ssn+"' ";
-        connection.updateQuery(query);
-        
-	}
+        ResultSet rs = connection.writeQuery("Select * from Users where ssn = " + ssn);
+        try{
+            if(rs.next()){
+             String query = "DELETE from Users where ssn = '"+ssn+"' ";
+             connection.updateQuery(query);
+           
+            }else {
+                System.out.println("No records available");
+        	}
+        }catch(Exception e){
+                System.out.println(e);
+        }
+    }
 
 	public void printAll(ResultSet rs){
         //Prints all the users in the mySQL database
