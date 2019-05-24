@@ -13,6 +13,7 @@ public class Customers implements Operations{
     }
 
 	public void insert(){
+
         //Inserts the created user into mySQL database
 
         System.out.println("Enter firstName");
@@ -29,6 +30,7 @@ public class Customers implements Operations{
         
         System.out.println("Enter ssn");
         int ssn=Input.getScanInteger();
+
 
         //Inserts the created user into mySQL database
         connection.updateQuery("INSERT INTO `Users` VALUES ('" + firstName + "','" + lastName + 
@@ -55,14 +57,23 @@ public class Customers implements Operations{
         String email = Input.getScanString();
 
         connection.updateQuery("UPDATE Users SET first_name = '" + fn + "', last_name = '" + ln 
-                    + "', age = '" + age + "', ssn = '" +  ssn + "', email = '" + email + "' WHERE ssn = '" + ssn + "'");
-        
+                    + "', age = '" + age + "', ssn = '" +  ssn + "', email = '" + email + "' WHERE ssn = '" + ssn + "'");       
 	}
 
 	public void delete(int ssn){
-        String query = "DELETE from Users where ssn = '"+ssn+"' ";
-        connection.updateQuery(query);
-	}
+        ResultSet rs = connection.writeQuery("Select * from Users where ssn = " + ssn);
+        try{
+            if(rs.next()){
+             String query = "DELETE from Users where ssn = '"+ssn+"' ";
+             connection.updateQuery(query);
+           
+            }else {
+                System.out.println("No records available");
+        	}
+        }catch(Exception e){
+                System.out.println(e);
+        }
+    }
 
 	public void printAll(ResultSet rs){
         //Prints all the users in the mySQL database
@@ -81,13 +92,19 @@ public class Customers implements Operations{
     public void printAll(){
         //Prints all the users in the mySQL database
         try{
-            ResultSet rs = connection.writeQuery("Select * from Users");
-            while(rs.next()){
-                System.out.println("-------------------------------------------------------------------");
-				System.out.println(rs.getString(1) + " " +rs.getString(2) 
-					+ " " + rs.getInt(3)  + " " + rs.getInt(4)  + " " + rs.getString(5) );
+           updateCustomers();
+
+           if(customers.size() >= 1){
+                for(int i=0; i<customers.size(); i++){
+                    System.out.println("-------------------------------------------------------------------");
+                    System.out.println("Customers: "+"\n" + customers.get(i).toString());
+                }    
                 System.out.println("-------------------------------------------------------------------");
             }
+            else{
+                System.out.println("NO USERS AVAILABLE");
+            }
+        
         }catch(Exception e){
             System.out.println(e);
         }
