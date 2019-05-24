@@ -14,20 +14,23 @@ public class Customers implements Operations{
 
 	public void insert(){
 
+        //Inserts the created user into mySQL database
+
         System.out.println("Enter firstName");
-        String firstName=scan.nextLine();
+        String firstName=Input.getScanString();
 
         System.out.println("Enter lastName");
-        String lastName=scan.nextLine();
+        String lastName=Input.getScanString();
 
         System.out.println("Enter Email id");
-        String email=scan.nextLine();
+        String email=Input.getScanString();
 
         System.out.println("Enter age");
-        int age=scan.nextInt();
+        int age=Input.getScanInteger();
         
         System.out.println("Enter ssn");
-        int ssn=scan.nextInt();
+        int ssn=Input.getScanInteger();
+
 
         //Inserts the created user into mySQL database
         connection.updateQuery("INSERT INTO `Users` VALUES ('" + firstName + "','" + lastName + 
@@ -41,17 +44,17 @@ public class Customers implements Operations{
         printAll(rs);
 
         System.out.println("Please enter the first name: ");
-        String fn = scan.nextLine();
+        String fn = Input.getScanString();
 
         System.out.println("Please enter the last name: ");
-        String ln = scan.nextLine();
+        String ln = Input.getScanString();
 
         System.out.println("Please enter the age: ");
-        int age = scan.nextInt();
-        scan.nextLine();
+        int age = Input.getScanInteger();
+
 
         System.out.println("Please enter the email: ");
-        String email = scan.nextLine();
+        String email = Input.getScanString();
 
         connection.updateQuery("UPDATE Users SET first_name = '" + fn + "', last_name = '" + ln 
                     + "', age = '" + age + "', ssn = '" +  ssn + "', email = '" + email + "' WHERE ssn = '" + ssn + "'");       
