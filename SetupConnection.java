@@ -2,12 +2,20 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class SetupConnection{
+    public static SetupConnection s;
     private Connection con;
     private Statement st;
     private ResultSet results;
     private Boolean connected = false;
 
-    SetupConnection(){
+    public static SetupConnection getConnection(){
+        if(s == null){
+            s = new SetupConnection();
+        }
+        return s;
+    }
+
+    private SetupConnection(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Driver Setup Successful.");

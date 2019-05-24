@@ -9,15 +9,26 @@ public class Customers implements Operations{
     Input input;
 
     Customers(){
-        connection = new SetupConnection();
+        connection = SetupConnection.getConnection();
         scan = new Scanner(System.in);
+
         input = Input.getInput();
+        System.out.println("input 1: " + input);
+        Input input2 = Input.getInput();
+        System.out.println("input 2: " + input2);
+        Input input3 = Input.getInput();
+        System.out.println("input 3: " + input3);
+
+        System.out.println("\ncon 1: " + connection);
+        SetupConnection con2 = SetupConnection.getConnection();
+        System.out.println("con 2: " + con2);
+        SetupConnection con3 = SetupConnection.getConnection();
+        System.out.println("con 3: " + con3);
     }
 
 	public void insert(){
 
         //Inserts the created user into mySQL database
-
         System.out.println("Enter firstName");
         String firstName=input.getScanString();
 
