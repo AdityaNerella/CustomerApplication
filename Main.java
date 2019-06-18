@@ -1,4 +1,3 @@
-import java.sql.*;
 import java.util.Scanner;
 
 public class Main{
@@ -46,6 +45,7 @@ public class Main{
                     break;      
                 }
             }
+            read.close();
 
     }
 }
